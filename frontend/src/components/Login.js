@@ -23,46 +23,6 @@ function Login(props) {
     setIsInfoTooltipPopupOpen(false);
   }
 
-  // useEffect(() => {
-  //   const token = localStorage.getItem('jwt');
-  //   if (token) {
-  //     auth.checkToken(token)
-  //       .then((res) => {
-  //         if (res) {
-  //           props.setEmail(email);
-  //           props.handleLogin();
-  //           navigate('/', {replace: true});
-  //         }
-  //       })
-  //       .catch((err) => {
-  //         setIsInfoTooltipPopupOpen(true);
-  //         setIsSuccessfulLogin(false);
-  //         console.log('Ошибка: ' + err)
-  //       });
-  //   }
-  // })
-
-  // function handleSubmit(e) {
-  //   e.preventDefault();
-  //   if (!email || !password) {
-  //     return;
-  //   }
-  //   auth.authorize(email, password)
-  //     .then((data) => {
-  //       if(data.token) {
-  //         localStorage.setItem('jwt', data.token); //token->jwt
-  //         props.setEmail(email);
-  //         props.handleLogin();
-  //         navigate('/', {replace: true});
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       setIsInfoTooltipPopupOpen(true);
-  //       setIsSuccessfulLogin(false);
-  //       console.log('Ошибка: ' + err)
-  //     });
-  // }
-
   function handleSubmit(e) {
     e.preventDefault();
     if (!email || !password) {
@@ -71,9 +31,8 @@ function Login(props) {
     auth.authorize(email, password)
       .then((data) => {
         if(data.token) {
-          localStorage.setItem('token', data.token);
+          localStorage.setItem('jwt', data.token); //'token' -> 'jwt'
           props.setEmail(email);
-          //setPassword('');
           props.handleLogin();
           navigate('/', {replace: true});
         }
