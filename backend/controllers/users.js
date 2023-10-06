@@ -6,6 +6,8 @@ const IncorrectDataError = require('../errors/incorrect-data-error');
 const UnauthorizedError = require('../errors/unauthorized-error');
 const ConflictError = require('../errors/conflict-error');
 
+const { NODE_ENV, JWT_SECRET } = process.env;
+
 module.exports.findAllUsers = (req, res, next) => {
   User.find({})
     .then((user) => res.send(user))
@@ -129,7 +131,11 @@ module.exports.login = (req, res, next) => {
             throw new UnauthorizedError('Неправильные почта или пароль.');
           }
           // аутентификация успешна
-          const token = jwt.sign({ _id: user._id }, 'some-secret-key', { expiresIn: '7d' });
+          const token = jwt.sign(
+            { _id: user._id },
+            NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
+            { expiresIn: '7d' },
+          );
           res.status(200).send({ token }); // .cookie('jwt', token, { httpOnly: true })
         })
         .catch(next);
