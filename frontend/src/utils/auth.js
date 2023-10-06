@@ -1,4 +1,4 @@
-export const BASE_URL = 'http://localhost:3000'; // 'https://auth.nomoreparties.co.';
+export const BASE_URL = 'https://api.mestoapp.nomoredomainsrocks.ru';
 
 const checkResponse = (res) => {
   return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);

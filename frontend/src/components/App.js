@@ -120,26 +120,26 @@ function App() {
     setLoggedIn(true);
   }
 
-  React.useEffect(() => {
-    checkToken();
-  }, []);
+  // const checkToken = () => {
+  //   const token = localStorage.getItem('token');
+  //   if (token) {
+  //     auth.checkToken(token)
+  //       .then((res) => {
+  //         if (res) {
+  //           setEmail(res.email);
+  //           setLoggedIn(true);
+  //           navigate('/', {replace: true})
+  //         }
+  //       })
+  //       .catch((err) => {
+  //         console.log(err); // выведем ошибку в консоль
+  //       });
+  //   }
+  // }
 
-  const checkToken = () => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      auth.checkToken(token)
-        .then((res) => {
-          if (res) {
-            setEmail(res.email);
-            setLoggedIn(true);
-            navigate('/', {replace: true})
-          }
-        })
-        .catch((err) => {
-          console.log(err); // выведем ошибку в консоль
-        });
-    }
-  }
+  // React.useEffect(() => {
+  //   checkToken();
+  // }, []);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
